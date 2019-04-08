@@ -17,7 +17,6 @@ HTMLS = $(MAINTEXS:%.tex=%)
 HTMLS2 = $(MAINTEXS2:%.tex=%)
 
 
-
 all: pdf html
 	echo $(PWD)
 	echo $(PDFS)
@@ -40,7 +39,7 @@ $(HTMLS): $(TEXS) $(MAINTEXS)
 	$(shell test -d $(DESTDIR)/html/$@ && rm -fr $(DESTDIR)/html/$@)
 	echo "*****************************  $@"
 	latex $@.tex
-	latex2html $@.tex
+	latex2html -local_icons  $@.tex
 	mv $@ $(DESTDIR)/html
 	
 $(HTMLS2): $(MAINTEXS2)
@@ -49,7 +48,8 @@ $(HTMLS2): $(MAINTEXS2)
 	$(shell test -d $(DESTDIR)/html/$@ && rm -fr $(DESTDIR)/html/$@)
 	echo "*****************************  $@"
 	latex $@.tex
-	latex2html -split 16 -no_navigation -info "" -address  "" -long_titles 5 -link 0  $@.tex
+	latex2html -local_icons -split 16 -long_titles 5  $@.tex
+	#latex2html -split 16 -no_navigation -info "" -address  "" -long_titles 5 -link 0  $@.tex
 	#-show_section_numbers $@.tex	
 	# -local_icons
 	mv $@ $(DESTDIR)/html

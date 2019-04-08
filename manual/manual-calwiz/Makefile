@@ -33,7 +33,7 @@ $(HTMLS): $(TEXS) $(MAINTEXS)
 	$(shell test -d $(DESTDIR)/html || mkdir -p $(DESTDIR)/html)                     
 	$(shell test -d $(DESTDIR)/html/$@ && rm -r $(DESTDIR)/html/$@)
 	latex $@.tex
-	latex2html -split 4 $@.tex
+	latex2html -local_icons -split 4 $@.tex
 	mv $@ $(DESTDIR)/html
 
 %.dvi : %.tex $(TEXS)
