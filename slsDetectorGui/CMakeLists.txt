@@ -1,4 +1,8 @@
+# Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
+# Create code from a list of Qt designer ui files
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SOURCES
     slsDetectorPlotting/src/SlsQt1DPlot.cxx
@@ -30,7 +34,7 @@ set(FORMS
     forms/form_tab_messages.ui 
 )
 
-qt4_wrap_ui(FORMS_H ${FORMS})
+qt5_wrap_ui(FORMS_H ${FORMS})
 
 set(HEADERS
     slsDetectorPlotting/include/SlsQt1DPlot.h
@@ -56,11 +60,12 @@ set(HEADERS
 set(RESOURCES
     include/icons.qrc
 )
-qt4_add_resources(RESOURCES_SRCS ${RESOURCES})
+qt5_add_resources(RESOURCES_SRCS ${RESOURCES})
 
+#set(CMAKE_CXX_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 add_definitions(
-    -DPRINT_LOG #-DVERBOSE 
+    ${Qt5Widgets_DEFINITIONS} -DPRINT_LOG #-DVERBOSE 
 )
 
 add_executable(slsDetectorGui
@@ -74,22 +79,21 @@ target_include_directories(slsDetectorGui PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/slsDetectorPlotting/include>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
-    "$<BUILD_INTERFACE:${QT_INCLUDE_DIR}>"
-    "$<BUILD_INTERFACE:${QT_QTCORE_INCLUDE_DIR}>"
-    "$<BUILD_INTERFACE:${QT_QTGUI_INCLUDE_DIR}>"
+    "$<BUILD_INTERFACE:${QT5Widgets_INCLUDE_DIRS}>"
     "$<BUILD_INTERFACE:${QWT_INCLUDE_DIR}>"
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
 )
 
 target_link_libraries(slsDetectorGui PUBLIC
     slsDetectorShared
-    ${QT_QTCORE_LIBRARIES}
-    ${QT_QTGUI_LIBRARIES}
     ${QWT_LIBRARIES}
     png
     z
-    Qt4::QtOpenGL
-    Qt4::QtSvg
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Widgets
+    Qt5::QtOpenGL
+    Qt5::QtSvg
 )
 
 set_target_properties(slsDetectorGui PROPERTIES
