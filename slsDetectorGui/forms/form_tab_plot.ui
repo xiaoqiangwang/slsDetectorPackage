@@ -69,7 +69,16 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>6</number>
+   </property>
+   <property name="topMargin">
+    <number>6</number>
+   </property>
+   <property name="rightMargin">
+    <number>6</number>
+   </property>
+   <property name="bottomMargin">
     <number>6</number>
    </property>
    <property name="spacing">
@@ -822,7 +831,7 @@ Displays minimum, maximum and sum of values for each plot.
       <item row="0" column="1">
        <widget class="QStackedWidget" name="stackedWidget1D">
         <property name="currentIndex">
-         <number>3</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="pageSuperImpose">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2260,22 +2269,6 @@ Displays minimum, maximum and sum of values for each plot.
      </layout>
     </widget>
    </item>
-   <item row="0" column="3">
-    <spacer name="horizontalSpacer_6">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>10</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="0" column="4" colspan="4">
     <widget class="QGroupBox" name="boxFrequency">
      <property name="sizePolicy">
@@ -2540,15 +2533,23 @@ Streaming Interval between 2 plots. Default is time interval with 200 ms.
      </layout>
     </widget>
    </item>
+   <item row="1" column="3">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>10</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
-  <zorder>boxPlotType</zorder>
-  <zorder>box1D</zorder>
-  <zorder>boxFrequency</zorder>
-  <zorder>box2D</zorder>
-  <zorder>horizontalSpacer_6</zorder>
-  <zorder>boxSave</zorder>
-  <zorder>boxPlotAxis</zorder>
-  <zorder>boxSnapshot</zorder>
  </widget>
  <tabstops>
   <tabstop>radioNoPlot</tabstop>

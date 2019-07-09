@@ -400,7 +400,7 @@ void qTabAdvanced::GetRxrZMQIP() {
 
 void qTabAdvanced::SetDetector(int index) {
     FILE_LOG(logDEBUG) << "Set Detector: "
-                       << comboDetector->currentText().toAscii().data();
+                       << comboDetector->currentText().toLatin1().data();
 
     GetOnline();
     GetControlPort();
@@ -438,7 +438,7 @@ void qTabAdvanced::SetStopPort(int port) {
 }
 
 void qTabAdvanced::SetDetectorUDPIP() {
-    std::string s = dispDetectorUDPIP->text().toAscii().constData();
+    std::string s = dispDetectorUDPIP->text().toLatin1().constData();
     FILE_LOG(logINFO) << "Setting Detector UDP IP:" << s;
     try {
         myDet->setDetectorIP(s, comboDetector->currentIndex());
@@ -448,7 +448,7 @@ void qTabAdvanced::SetDetectorUDPIP() {
 }
 
 void qTabAdvanced::SetDetectorUDPMAC() {
-    std::string s = dispDetectorUDPMAC->text().toAscii().constData();
+    std::string s = dispDetectorUDPMAC->text().toLatin1().constData();
     FILE_LOG(logINFO) << "Setting Detector UDP MAC:" << s;
     try {
         myDet->setDetectorMAC(s, comboDetector->currentIndex());
@@ -468,7 +468,7 @@ void qTabAdvanced::SetCltZMQPort(int port) {
 }
 
 void qTabAdvanced::SetCltZMQIP() {
-    std::string s = dispZMQIP->text().toAscii().constData();
+    std::string s = dispZMQIP->text().toLatin1().constData();
     FILE_LOG(logINFO) << "Setting Client ZMQ IP:" << s;
     try {
         myDet->setClientDataStreamingInIP(s, comboDetector->currentIndex());
@@ -478,7 +478,7 @@ void qTabAdvanced::SetCltZMQIP() {
 }
 
 void qTabAdvanced::SetRxrHostname() {
-    std::string s = dispZMQIP->text().toAscii().constData();
+    std::string s = dispZMQIP->text().toLatin1().constData();
     FILE_LOG(logINFO) << "Setting Receiver Hostname:" << s;
     try {
         myDet->setReceiverHostname(s, comboDetector->currentIndex());
@@ -509,7 +509,7 @@ void qTabAdvanced::SetRxrUDPPort(int port) {
 }
 
 void qTabAdvanced::SetRxrUDPIP() {
-    std::string s = dispRxrUDPIP->text().toAscii().constData();
+    std::string s = dispRxrUDPIP->text().toLatin1().constData();
     FILE_LOG(logINFO) << "Setting Receiver UDP IP:" << s;
     try {
         myDet->setReceiverUDPIP(s, comboDetector->currentIndex());
@@ -519,7 +519,7 @@ void qTabAdvanced::SetRxrUDPIP() {
 }
 
 void qTabAdvanced::SetRxrUDPMAC() {
-    std::string s = dispRxrUDPMAC->text().toAscii().constData();
+    std::string s = dispRxrUDPMAC->text().toLatin1().constData();
     FILE_LOG(logINFO) << "Setting Receiver UDP MAC:" << s;
     try {
         myDet->setReceiverUDPMAC(s, comboDetector->currentIndex());
@@ -539,7 +539,7 @@ void qTabAdvanced::SetRxrZMQPort(int port) {
 }
 
 void qTabAdvanced::SetRxrZMQIP() {
-    std::string s = dispRxrZMQIP->text().toAscii().constData();
+    std::string s = dispRxrZMQIP->text().toLatin1().constData();
     FILE_LOG(logINFO) << "Setting Receiver ZMQ IP:" << s;
     try {
         myDet->setReceiverDataStreamingOutIP(s, comboDetector->currentIndex());

@@ -16,7 +16,7 @@
 #include <QResizeEvent>
 #include <QScrollArea>
 #include <QFileDialog>
-#include <QPlastiqueStyle>
+//#include <QPlastiqueStyle>
 #include <QSizePolicy>
 
 #include <iostream>
@@ -27,7 +27,7 @@
 
 int main(int argc, char **argv) {
     QApplication *theApp = new QApplication(argc, argv);
-    theApp->setStyle(new QPlastiqueStyle);
+    //theApp->setStyle(new QPlastiqueStyle);
     theApp->setWindowIcon(QIcon(":/icons/images/mountain.png"));
     try {
         qDetectorMain *det = new qDetectorMain(argc, argv, theApp, 0);
@@ -380,7 +380,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
             if (!fName.isEmpty()) {
                 refreshTabs = true;
                 myDet->retrieveDetectorSetup(
-                    std::string(fName.toAscii().constData()));
+                    std::string(fName.toLatin1().constData()));
                 qDefs::Message(
                     qDefs::INFORMATION,
                     "The Setup Parameters have been loaded successfully.",
@@ -398,7 +398,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
             // Gets called when cancelled as well
             if (!fName.isEmpty()) {
                 myDet->dumpDetectorSetup(
-                    std::string(fName.toAscii().constData()));
+                    std::string(fName.toLatin1().constData()));
                 qDefs::Message(
                     qDefs::INFORMATION,
                     "The Setup Parameters have been saved successfully.",
@@ -417,7 +417,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
             if (!fName.isEmpty()) {
                 refreshTabs = true;
                 myDet->readConfigurationFile(
-                    std::string(fName.toAscii().constData()));
+                    std::string(fName.toLatin1().constData()));
                 qDefs::Message(qDefs::INFORMATION,
                                "The Configuration Parameters have been "
                                "configured successfully.",
@@ -436,7 +436,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
             // Gets called when cancelled as well
             if (!fName.isEmpty()) {
                 myDet->writeConfigurationFile(
-                    std::string(fName.toAscii().constData()));
+                    std::string(fName.toLatin1().constData()));
                 qDefs::Message(qDefs::INFORMATION,
                                "The Configuration Parameters have been saved "
                                "successfully.",
@@ -458,7 +458,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
                 // Gets called when cancelled as well
                 if (!fName.isEmpty()) {
                     myDet->loadSettingsFile(
-                        std::string(fName.toAscii().constData()), -1);
+                        std::string(fName.toLatin1().constData()), -1);
                     qDefs::Message(
                         qDefs::INFORMATION,
                         "The Settings have been loaded successfully.",
@@ -480,7 +480,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
                 // Gets called when cancelled as well
                 if (!fName.isEmpty()) {
                     myDet->loadSettingsFile(
-                        std::string(fName.toAscii().constData()), -1);
+                        std::string(fName.toLatin1().constData()), -1);
                     qDefs::Message(
                         qDefs::INFORMATION,
                         "The Trimbits have been loaded successfully.",
@@ -503,7 +503,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
                 // Gets called when cancelled as well
                 if (!fName.isEmpty()) {
                     myDet->saveSettingsFile(
-                        std::string(fName.toAscii().constData()), -1);
+                        std::string(fName.toLatin1().constData()), -1);
                     qDefs::Message(qDefs::INFORMATION,
                                    "The Settings have been saved successfully.",
                                    "qDetectorMain::ExecuteUtilities");
@@ -520,7 +520,7 @@ void qDetectorMain::ExecuteUtilities(QAction *action) {
                 // Gets called when cancelled as well
                 if (!fName.isEmpty()) {
                     myDet->saveSettingsFile(
-                        std::string(fName.toAscii().constData()), -1);
+                        std::string(fName.toLatin1().constData()), -1);
                     qDefs::Message(qDefs::INFORMATION,
                                    "The Trimbits have been saved successfully.",
                                    "qDetectorMain::ExecuteUtilities");

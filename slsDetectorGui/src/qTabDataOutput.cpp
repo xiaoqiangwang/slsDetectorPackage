@@ -154,7 +154,7 @@ void qTabDataOutput::BrowseOutputDir() {
 
 void qTabDataOutput::SetOutputDir() {
 	QString path = dispOutputDir->text();
-	FILE_LOG(logDEBUG) << "Setting output directory to " << path.toAscii().constData();
+	FILE_LOG(logDEBUG) << "Setting output directory to " << path.toLatin1().constData();
 
 	// empty
 	if (path.isEmpty()) {
@@ -168,7 +168,7 @@ void qTabDataOutput::SetOutputDir() {
 				path.chop(1);
 			}
 		}
-		std::string spath = std::string(path.toAscii().constData());
+		std::string spath = std::string(path.toLatin1().constData());
 		try {
 			myDet->setFilePath(spath, comboDetector->currentIndex() - 1);
 		} CATCH_HANDLE ("Could not set output file path.", "qTabDataOutput::SetOutputDir", this, &qTabDataOutput::GetOutputDir)
@@ -199,7 +199,7 @@ void qTabDataOutput::GetFileFormat() {
 }
 
 void qTabDataOutput::SetFileFormat(int format) {
-	FILE_LOG(logINFO) << "Setting File Format to " << comboFileFormat->currentText().toAscii().data();
+	FILE_LOG(logINFO) << "Setting File Format to " << comboFileFormat->currentText().toLatin1().data();
 	try {
         myDet->setFileFormat((slsDetectorDefs::fileFormat)comboFileFormat->currentIndex());
     } CATCH_HANDLE ("Could not set file format.", "qTabDataOutput::SetFileFormat", this, &qTabDataOutput::GetFileFormat)
@@ -331,7 +331,7 @@ void qTabDataOutput::GetSpeed() {
 }
 
 void qTabDataOutput::SetSpeed(int speed) {
-	FILE_LOG(logINFO) << "Setting Speed to " << comboEigerClkDivider->currentText().toAscii().data();;
+	FILE_LOG(logINFO) << "Setting Speed to " << comboEigerClkDivider->currentText().toLatin1().data();;
 	try {
         myDet->setSpeed(slsDetectorDefs::CLOCK_DIVIDER, speed);
     } CATCH_HANDLE ("Could not set speed.", "qTabDataOutput::SetSpeed", this, &qTabDataOutput::GetSpeed)
@@ -397,9 +397,9 @@ void qTabDataOutput::SetFlags() {
 	}
 
 	try {
-		FILE_LOG(logINFO) << "Setting Readout Flags to " << comboEigerFlags1->currentText().toAscii().data();
+		FILE_LOG(logINFO) << "Setting Readout Flags to " << comboEigerFlags1->currentText().toLatin1().data();
         myDet->setReadOutFlags(flag1);
-		FILE_LOG(logINFO) << "Setting Readout Flags to " << comboEigerFlags2->currentText().toAscii().data();
+		FILE_LOG(logINFO) << "Setting Readout Flags to " << comboEigerFlags2->currentText().toLatin1().data();
 		myDet->setReadOutFlags(flag2);
     } CATCH_HANDLE ("Could not set readout flags.", "qTabDataOutput::SetFlags", this, &qTabDataOutput::GetFlags)
 }

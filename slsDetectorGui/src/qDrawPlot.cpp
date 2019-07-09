@@ -10,7 +10,7 @@
 #include <QFileDialog>
 #include <QPainter>
 #include "qwt_symbol.h"
-#include <QtConcurrentRun>
+#include <QtConcurrent/QtConcurrentRun>
 
 
 
@@ -183,8 +183,8 @@ void qDrawPlot::SetupPlots() {
     // setup 1d plot
     plot1d = new SlsQt1DPlot(boxPlot);
     plot1d->setFont(QFont("Sans Serif", 9, QFont::Normal));
-    plot1d->SetXTitle(xTitle1d.toAscii().constData());
-    plot1d->SetYTitle(yTitle1d.toAscii().constData());
+    plot1d->SetXTitle(xTitle1d.toLatin1().constData());
+    plot1d->SetYTitle(yTitle1d.toLatin1().constData());
     plot1d->hide();
     // setup data
     if (datax1d)
@@ -280,8 +280,8 @@ int64_t qDrawPlot::GetCurrentFrameIndex() {
 void qDrawPlot::Select1dPlot(bool enable) { 
     if (enable) {
         // DetachHists(); it clears the last measurement
-        plot1d->SetXTitle(xTitle1d.toAscii().constData());
-        plot1d->SetYTitle(yTitle1d.toAscii().constData());
+        plot1d->SetXTitle(xTitle1d.toLatin1().constData());
+        plot1d->SetYTitle(yTitle1d.toLatin1().constData());
         plot1d->show();
         plot2d->hide();
         boxPlot->setFlat(false);
@@ -303,12 +303,12 @@ void qDrawPlot::Select1dPlot(bool enable) {
 }
 
 void qDrawPlot::SetPlotTitlePrefix(QString title) { 
-    FILE_LOG(logINFO) << "Setting Title to " << title.toAscii().constData();
+    FILE_LOG(logINFO) << "Setting Title to " << title.toLatin1().constData();
     plotTitlePrefix = title; 
 }
 
 void qDrawPlot::SetXAxisTitle(QString title) {
-    FILE_LOG(logINFO) << "Setting X Axis Title to " << title.toAscii().constData();
+    FILE_LOG(logINFO) << "Setting X Axis Title to " << title.toLatin1().constData();
     if (is1d) {
         xTitle1d = title;
     } else {
@@ -317,7 +317,7 @@ void qDrawPlot::SetXAxisTitle(QString title) {
 }
 
 void qDrawPlot::SetYAxisTitle(QString title) {
-    FILE_LOG(logINFO) << "Setting Y Axis Title to " << title.toAscii().constData();
+    FILE_LOG(logINFO) << "Setting Y Axis Title to " << title.toLatin1().constData();
     if (is1d) {
         yTitle1d = title;
     } else {
@@ -326,7 +326,7 @@ void qDrawPlot::SetYAxisTitle(QString title) {
 }
 
 void qDrawPlot::SetZAxisTitle(QString title) { 
-    FILE_LOG(logINFO) << "Setting Z Axis Title to " << title.toAscii().constData();
+    FILE_LOG(logINFO) << "Setting Z Axis Title to " << title.toLatin1().constData();
     zTitle2d = title; 
 }
 
@@ -479,7 +479,7 @@ void qDrawPlot::EnableGainPlot(bool enable) {
 }
 
 void qDrawPlot::SetSaveFileName(QString val) {
-    FILE_LOG(logDEBUG) << "Setting Clone/Save File Name to " << val.toAscii().constData();
+    FILE_LOG(logDEBUG) << "Setting Clone/Save File Name to " << val.toLatin1().constData();
     fileSaveName = val;
 }
 
@@ -866,8 +866,8 @@ void qDrawPlot::Get2dData(double* rawData) {
 
 void qDrawPlot::Update1dPlot() {
     DetachHists();
-    plot1d->SetXTitle(xTitle1d.toAscii().constData());
-    plot1d->SetYTitle(yTitle1d.toAscii().constData());
+    plot1d->SetXTitle(xTitle1d.toLatin1().constData());
+    plot1d->SetYTitle(yTitle1d.toLatin1().constData());
     for (unsigned int i = 0; i < nHists; ++i) {
         SlsQtH1D* h = hists1d.at(i);
         h->SetData(nPixelsX, datax1d, datay1d[i]);
@@ -1021,9 +1021,9 @@ void qDrawPlot::UpdatePlot() {
         lblFrameIndexTitle1d->setText(indexTitle);
         Update1dPlot();
     } else {   
-        plot2d->setTitle(indexTitle.toAscii().constData());
+        plot2d->setTitle(indexTitle.toLatin1().constData());
         if (isGainDataExtracted)
-            gainplot2d->setTitle(indexTitle.toAscii().constData());
+            gainplot2d->setTitle(indexTitle.toLatin1().constData());
         Update2dPlot();
     }
 

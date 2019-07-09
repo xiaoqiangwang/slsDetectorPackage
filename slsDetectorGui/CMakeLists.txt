@@ -1,8 +1,5 @@
-# Instruct CMake to run moc automatically when needed
-set(CMAKE_AUTOMOC ON)
-# Create code from a list of Qt designer ui files
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+cmake_policy(SET CMP0071 OLD)
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SOURCES
     slsDetectorPlotting/src/SlsQt1DPlot.cxx
@@ -44,7 +41,6 @@ set(HEADERS
     slsDetectorPlotting/include/SlsQt2DPlotLayout.h
     slsDetectorPlotting/include/SlsQt2DZoomer.h
     include/qDefs.h
-    include/qDebugStream.h
     include/qDetectorMain.h
     include/qDrawPlot.h
     include/qCloneWidget.h
@@ -80,24 +76,36 @@ target_include_directories(slsDetectorGui PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/slsDetectorPlotting/include>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
     "$<BUILD_INTERFACE:${QT5Widgets_INCLUDE_DIRS}>"
+ #   "$<BUILD_INTERFACE:${Qt5Gui_INCLUDE_DIRS}>"
+ #   "$<BUILD_INTERFACE:${Qt5Core_INCLUDE_DIRS}>"
+ #   "$<BUILD_INTERFACE:${Qt5OpenGL_INCLUDE_DIRS}>"
+ #   "$<BUILD_INTERFACE:${Qt5Svg_INCLUDE_DIRS}>"
+    "$<BUILD_INTERFACE:${Qt5Concurrent_INCLUDE_DIRS}>"  
     "$<BUILD_INTERFACE:${QWT_INCLUDE_DIR}>"
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
 )
+
+#qt5_use_modules(slsDetectorGui Gui Core OpenGL Svg Concurrent)
 
 target_link_libraries(slsDetectorGui PUBLIC
     slsDetectorShared
     ${QWT_LIBRARIES}
     png
     z
-    Qt5::Core
-    Qt5::Gui
     Qt5::Widgets
-    Qt5::QtOpenGL
-    Qt5::QtSvg
+    Qt5::Gui
+    Qt5::Core
+    Qt5::OpenGL
+    Qt5::Svg
+    Qt5::Concurrent
 )
 
 set_target_properties(slsDetectorGui PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    # Instruct CMake to run moc automatically when needed
+    AUTOMOC ON
+    # Create code from a list of Qt designer ui files
+    #AUTOUIC ON
 )
 
 install(TARGETS slsDetectorGui

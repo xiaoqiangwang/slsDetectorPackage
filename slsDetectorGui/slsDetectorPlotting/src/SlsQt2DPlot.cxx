@@ -1,4 +1,4 @@
-
+#include "SlsQt2DPlot.h"
 /**
  * @author Ian Johnson
  * @version 1.0
@@ -7,12 +7,12 @@
 #include <cmath>
 #include <iostream>
 #include <qlist.h>
-#include <qprinter.h>
+//#include <qprinter.h>
 #include <qtoolbutton.h>
 
-#if QT_VERSION >= 0x040000
-#include <qprintdialog.h>
-#endif
+//#if QT_VERSION >= 0x040000
+//#include <qprintdialog.h>
+//#endif
 #include <qwt_color_map.h>
 #include <qwt_plot_layout.h>
 #include <qwt_plot_panner.h>
@@ -22,7 +22,7 @@
 #include <qwt_scale_engine.h>
 #include <qwt_scale_widget.h>
 
-#include "SlsQt2DPlot.h"
+
 
 #if QWT_VERSION >= 0x060100
 #define QwtLog10ScaleEngine QwtLogScaleEngine

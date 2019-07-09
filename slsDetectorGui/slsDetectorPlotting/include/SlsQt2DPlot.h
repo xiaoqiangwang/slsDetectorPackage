@@ -16,6 +16,10 @@
 
 
 
+#include "qglobal.h"
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+#define QT_STATIC_CONST static const
+#endif
 
 #include <qwt_plot.h>
 #include <qlist.h>

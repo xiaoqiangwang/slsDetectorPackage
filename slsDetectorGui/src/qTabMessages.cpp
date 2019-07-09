@@ -1,7 +1,6 @@
 #include "qTabMessages.h"
 #include "qDefs.h"
 
-#include <QEvent>
 #include <QFile>
 #include <QFileDialog>
 #include <QTextStream>
@@ -28,9 +27,6 @@ void qTabMessages::SetupWidgetWindow() {
     process->setWorkingDirectory(QDir::cleanPath(QDir::currentPath()));
     PrintNextLine();
 
-    qDebugStream(std::cout, this);
-    qDebugStream(std::cerr, this);
-
     Initialization();
 }
 
@@ -49,7 +45,7 @@ void qTabMessages::ExecuteCommand() {
  
     QString command = param.at(0);
     param.removeFirst();
-    FILE_LOG(logINFO) << "Executing Command:[" << command.toAscii().constData() << "] with Arguments:[" << param.join(" ").toAscii().constData() << "]";
+    FILE_LOG(logINFO) << "Executing Command:[" << command.toLatin1().constData() << "] with Arguments:[" << param.join(" ").toLatin1().constData() << "]";
 
     process->setProcessChannelMode(QProcess::MergedChannels);
     process->start(command, param);
@@ -78,14 +74,6 @@ void qTabMessages::AppendError() {
     PrintNextLine();
 }
 
-
-void qTabMessages::customEvent(QEvent *e) {
-    if (e->type() == (STREAMEVENT)) {
-        QString temp = ((qStreamEvent *)e)->getString();
-        dispLog->append(temp);
-    }
-}
-
 void qTabMessages::SaveLog() {
     QString fName = QDir::cleanPath(QDir::currentPath()) + "/LogFile.txt";
     fName = QFileDialog::getSaveFileName(this, tr("Save Snapshot "),
@@ -96,11 +84,11 @@ void qTabMessages::SaveLog() {
         if (outfile.open(QIODevice::WriteOnly | QIODevice::Text)) {
             QTextStream out(&outfile);
             out << dispLog->toPlainText() << endl;
-            std::string mess  = std::string("The Log has been successfully saved to ") + fName.toAscii().constData();
+            std::string mess  = std::string("The Log has been successfully saved to ") + fName.toLatin1().constData();
             qDefs::Message(qDefs::INFORMATION, mess, "TabMessages::SaveLog");
             FILE_LOG(logINFO) << mess;
         } else {
-        	FILE_LOG(logWARNING) << "Attempt to save log file failed: " << fName.toAscii().constData();
+        	FILE_LOG(logWARNING) << "Attempt to save log file failed: " << fName.toLatin1().constData();
         	qDefs::Message(qDefs::WARNING, "Attempt to save log file failed.", "qTabMessages::SaveLog");
         }
     }

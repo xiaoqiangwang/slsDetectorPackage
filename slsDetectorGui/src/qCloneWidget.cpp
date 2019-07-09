@@ -90,8 +90,8 @@ void qCloneWidget::SetupWidgetWindow(QString title, QString xTitle, QString yTit
         cloneplot1D = new SlsQt1DPlot(boxPlot);
 
         cloneplot1D->setFont(QFont("Sans Serif", 9, QFont::Normal));
-        cloneplot1D->SetXTitle(xTitle.toAscii().constData());
-        cloneplot1D->SetYTitle(yTitle.toAscii().constData());
+        cloneplot1D->SetXTitle(xTitle.toLatin1().constData());
+        cloneplot1D->SetYTitle(yTitle.toLatin1().constData());
 
         boxPlot->setFlat(false);
         boxPlot->setContentsMargins(0, 30, 0, 0);
@@ -144,7 +144,7 @@ void qCloneWidget::SetCloneHists(unsigned int nHists, int histNBins, double *his
 
 void qCloneWidget::SetCloneHists2D(int nbinsx, double xmin, double xmax, int nbinsy, double ymin, double ymax, double *d, QString frameIndexTitle, bool isZmax, bool isZmin, double zmin, double zmax) {
     cloneplot2D->GetPlot()->SetData(nbinsx, xmin, xmax, nbinsy, ymin, ymax, d);
-    cloneplot2D->setTitle(frameIndexTitle.toAscii().constData());
+    cloneplot2D->setTitle(frameIndexTitle.toLatin1().constData());
     cloneplot2D->SetZRange(isZmin, isZmax, zmin, zmax);
 }
 
@@ -155,7 +155,7 @@ void qCloneWidget::SavePlot() {
     sprintf(cID, "%d", id);
     //title
     QString fName = filePath + QString('/') + fileName + QString('_') + imageIndex +  QString('_') + QString(NowTime().c_str()) + QString(".png");
-    FILE_LOG(logDEBUG) << "fname:" << fName.toAscii().constData();
+    FILE_LOG(logDEBUG) << "fname:" << fName.toLatin1().constData();
     //save
     QImage img(boxPlot->size().width(), boxPlot->size().height(), QImage::Format_RGB32);
     QPainter painter(&img);
@@ -178,7 +178,7 @@ int qCloneWidget::SavePlotAutomatic() {
     sprintf(cID, "%d", id);
     //title
     QString fName = filePath + QString('/') + fileName + QString('_') + imageIndex +  QString('_') + QString(NowTime().c_str()) + QString(".png");
-    FILE_LOG(logDEBUG) << "fname:" << fName.toAscii().constData();
+    FILE_LOG(logDEBUG) << "fname:" << fName.toLatin1().constData();
     //save
     QImage img(boxPlot->size().width(), boxPlot->size().height(), QImage::Format_RGB32);
     QPainter painter(&img);

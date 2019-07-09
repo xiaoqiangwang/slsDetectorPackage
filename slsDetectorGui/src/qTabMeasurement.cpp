@@ -214,7 +214,7 @@ void qTabMeasurement::GetTimingMode() {
 }
 
 void qTabMeasurement::SetTimingMode(int val) {
-	FILE_LOG(logINFO) << "Setting timing mode:" << comboTimingMode->currentText().toAscii().data();
+	FILE_LOG(logINFO) << "Setting timing mode:" << comboTimingMode->currentText().toLatin1().data();
 	
 	try {
         myDet->setExternalCommunicationMode(static_cast<slsDetectorDefs::externalCommunicationMode>(val));
@@ -480,7 +480,7 @@ void qTabMeasurement::GetFileName() {
 }
 
 void qTabMeasurement::SetFileName() {
-	std::string val = std::string(dispFileName->text().toAscii().constData());
+	std::string val = std::string(dispFileName->text().toLatin1().constData());
 	FILE_LOG(logINFO) << "Setting File Name Prefix:" << val;
 	try {
         myDet->setFileName(val);
@@ -618,7 +618,7 @@ void qTabMeasurement::Enable(bool enable) {
 	frameNotTimeResolved->setEnabled(enable);
 
 	//shortcut each time, else it doesnt work a second time
-	btnStart->setShortcut(QApplication::translate("TabMeasurementObject", "Shift+Space", 0, QApplication::UnicodeUTF8));
+	btnStart->setShortcut(QApplication::translate("TabMeasurementObject", "Shift+Space", 0));
 }
 
 void qTabMeasurement::Refresh() {

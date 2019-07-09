@@ -205,7 +205,7 @@ void qTabDebugging::TestDetector() {
         }
 
         //display message
-        qDefs::Message(qDefs::INFORMATION, message.toAscii().constData(), "qTabDebugging::TestDetector");
+        qDefs::Message(qDefs::INFORMATION, message.toLatin1().constData(), "qTabDebugging::TestDetector");
     } CATCH_DISPLAY ("Could not execute digital test.", "qTabDebugging::TestDetector")
 }
 
