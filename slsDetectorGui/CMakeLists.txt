@@ -85,19 +85,19 @@ target_include_directories(slsDetectorGui PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
 )
 
-#qt5_use_modules(slsDetectorGui Gui Core OpenGL Svg Concurrent)
+set(slsDetectorGui PUBLIC ${slsDetectorGui})
 
-target_link_libraries(slsDetectorGui PUBLIC
+target_link_libraries(slsDetectorGui
     slsDetectorShared
     ${QWT_LIBRARIES}
     png
     z
-    Qt5::Widgets
-    Qt5::Gui
-    Qt5::Core
-    Qt5::OpenGL
-    Qt5::Svg
-    Qt5::Concurrent
+   Qt5::Widgets
+   Qt5::Gui
+   Qt5::Core
+   Qt5::OpenGL
+   Qt5::Svg
+   Qt5::Concurrent
 )
 
 set_target_properties(slsDetectorGui PROPERTIES
