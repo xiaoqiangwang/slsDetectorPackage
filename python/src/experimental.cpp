@@ -89,7 +89,7 @@ void init_experimental(py::module &m) {
 
         .def("getDAC", &Detector::getDAC, py::arg(), py::arg() = false,
              py::arg() = Positions{})
-        .def("setDAC", &Detector::setDAC, py::arg(), py::arg(), py::arg(),
+        .def("setDAC", &Detector::setDAC, py::arg(), py::arg(), py::arg() = false,
              py::arg() = Positions{})
 
         .def("getTimingMode", &Detector::getTimingMode, py::arg() = Positions{})

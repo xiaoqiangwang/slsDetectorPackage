@@ -14,11 +14,11 @@ class DetectorProperty:
 
     def __getitem__(self, key):
         if key == slice(None, None, None):
-            return [self.get(i) for i in range(self.get_nmod())]
+            return self.get()
         elif isinstance(key, Iterable):
-            return [self.get(k) for k in key]
+            return self.get(list(key))
         else:
-            return self.get(key)
+            return self.get([key])
 
     def __setitem__(self, key, value):
         #operate on all values

@@ -14,12 +14,12 @@ class Dac(DetectorProperty):
 
 
     """
-    def __init__(self, name, low, high, default, detector):
+    def __init__(self, enum, low, high, default, detector):
 
-        super().__init__(partial(detector._api.getDac, name),
-                         partial(detector._api.setDac, name),
-                         detector._api.getNumberOfDetectors,
-                         name)
+        super().__init__(partial(detector.getDAC, enum, False),
+                         partial(detector.setDAC, enum, False),
+                         detector.size,
+                         enum)
 
         self.min_value = low
         self.max_value = high

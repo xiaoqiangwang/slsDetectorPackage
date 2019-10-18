@@ -12,6 +12,7 @@ import datetime as dt
 from functools import wraps
 from collections import namedtuple
 
+
 class Register:
     """
     Helper class to read and write to registers using a
