@@ -1,5 +1,4 @@
 
-find_package (Python COMPONENTS Interpreter Development)
 
 pybind11_add_module(_slsdet 
     src/main.cpp 
@@ -9,17 +8,14 @@ pybind11_add_module(_slsdet
 )
 
 target_link_libraries(_slsdet PUBLIC 
-                        slsDetectorShared
-                        slsReceiverShared
-                        slsSupportShared
-                        ${ZeroMQ_LIBRARIES}
-                        )  
-
+                      slsDetectorStatic
+                      ${ZeroMQ_LIBRARIES}
+)  
 
 
 set_target_properties(_slsdet PROPERTIES
-                        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-                    )
+                      LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
 
 #Copy Python code 
 set( PYTHON_FILES
