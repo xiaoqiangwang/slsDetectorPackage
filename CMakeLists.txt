@@ -192,7 +192,7 @@ if (SLS_USE_INTEGRATION_TESTS)
 endif (SLS_USE_INTEGRATION_TESTS)
 
 if (SLS_USE_PYTHON)
-    find_package(Python COMPONENTS Interpreter Development REQUIRED)
+    find_package(Python 3.6 COMPONENTS Interpreter Development REQUIRED)
     add_subdirectory(libs/pybind11)
     add_subdirectory(python)
 endif(SLS_USE_PYTHON)
