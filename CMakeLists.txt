@@ -192,6 +192,7 @@ if (SLS_USE_INTEGRATION_TESTS)
 endif (SLS_USE_INTEGRATION_TESTS)
 
 if (SLS_USE_PYTHON)
+    find_package(Python COMPONENTS Interpreter Development REQUIRED)
     set(PYBIND11_CPP_STANDARD -std=c++11)
     add_subdirectory(libs/pybind11)
     add_subdirectory(python)

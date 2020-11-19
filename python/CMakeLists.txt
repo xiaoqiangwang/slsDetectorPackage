@@ -1,5 +1,5 @@
 
-# find_package (Python COMPONENTS Interpreter Development)
+find_package (Python COMPONENTS Interpreter Development)
 
 pybind11_add_module(_slsdet 
     src/main.cpp 
